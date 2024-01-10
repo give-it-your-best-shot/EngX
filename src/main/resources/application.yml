@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/engx}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+  messages:
+    basename: messages/api_error_messages
+
+springdoc:
+  show-actuator: true
+  paths-to-match: /**
+  packages-to-scan: com.engx.engxserver
+
+jwt:
+  secretKey: secret
+  issuer: www.farukgenc.com
+  expirationMinute: 10
+
+swagger:
+  contact-name: Faruk Genc
+  contact-mail: omer@farukgenc.com
+  contact-url: https://farukgenc.com
+  app-name: Spring Boot Boilerplate Project
+  app-description: 'Spring Boot Boilerplate is a starter kit. This project includes : Spring Boot(3.2.1), Spring Data JPA, Spring Validation, Spring Security + JWT Token, MySQL, Mapstruct, Lombok, Swagger'
+  app-version: 2.0.0
+  app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  app-license: Apache 2.0
