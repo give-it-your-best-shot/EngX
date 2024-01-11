@@ -1,7 +1,10 @@
 package com.engx.engxserver.controller;
 
+import javax.security.auth.login.LoginException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,11 +31,11 @@ public class UserController {
   private MessageSource messageSource;
 
   @PostMapping("/login")
-  public ResponseEntity<?> loginWithEmailAddress(@RequestBody LoginRequestDTO loginRequestDTO) {
+  public ResponseEntity<LoginResponseDTO> loginWithEmailAddress(@RequestBody LoginRequestDTO loginRequestDTO)
+      throws LoginException {
     User user = userService.getUserByEmail(loginRequestDTO.getEmail());
     if (user == null) {
-      return new ResponseEntity<>(messageSource.getMessage("api.error.user.not.authenticated", null, null),
-          HttpStatus.UNAUTHORIZED);
+      throw new LoginException(messageSource.getMessage("api.error.user.not.authenticated", null, null));
     }
     UserDTO userDTOResponse = modelMapper.map(user, UserDTO.class);
 
