@@ -4,7 +4,6 @@ import javax.security.auth.login.LoginException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +39,6 @@ public class UserController {
     UserDTO userDTOResponse = modelMapper.map(user, UserDTO.class);
 
     LoginResponseDTO loginDTO = new LoginResponseDTO(userDTOResponse);
-    return ResponseEntity.ok(loginDTO);
+    return new ResponseEntity<>(loginDTO, HttpStatus.OK);
   }
 }

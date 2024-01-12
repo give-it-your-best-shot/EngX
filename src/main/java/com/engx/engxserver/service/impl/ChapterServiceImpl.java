@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.engx.engxserver.dto.AddChapterRequestDTO;
 import com.engx.engxserver.dto.ChapterDTO;
 import com.engx.engxserver.dto.ChapterWordDTO;
 import com.engx.engxserver.entity.Chapter;
@@ -24,8 +25,8 @@ public class ChapterServiceImpl implements ChapterService {
   private final ModelMapper modelMapper;
 
   @Override
-  public ChapterDTO addChapter(ChapterDTO chapterDTO) {
-    Chapter chapter = modelMapper.map(chapterDTO, Chapter.class);
+  public ChapterDTO addChapter(AddChapterRequestDTO chapterRequestDTO) {
+    Chapter chapter = modelMapper.map(chapterRequestDTO, Chapter.class);
 
     chapter.getWords().forEach(word -> word.setChapter(chapter));
     Chapter savedChapter = chapterRepositor.save(chapter);

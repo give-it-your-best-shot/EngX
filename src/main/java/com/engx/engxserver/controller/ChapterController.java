@@ -1,23 +1,19 @@
 package com.engx.engxserver.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.engx.engxserver.dto.AddChapterRequestDTO;
 import com.engx.engxserver.dto.ChapterDTO;
-import com.engx.engxserver.entity.Chapter;
-import com.engx.engxserver.entity.ChapterWord;
-import com.engx.engxserver.repository.ChapterRepository;
-import com.engx.engxserver.repository.ChapterWordRepository;
 import com.engx.engxserver.service.base.ChapterService;
 
-import jakarta.transaction.Transactional;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.AllArgsConstructor;
@@ -35,9 +31,9 @@ public class ChapterController {
   }
 
   @PostMapping
-  public ResponseEntity<ChapterDTO> addChapter(@RequestBody ChapterDTO chapter) {
+  public ResponseEntity<ChapterDTO> addChapter(HttpServletRequest request, @RequestBody AddChapterRequestDTO chapter) {
     ChapterDTO result = chapterService.addChapter(chapter);
 
-    return ResponseEntity.ok(result);
+    return new ResponseEntity<>(result, HttpStatus.CREATED);
   }
 }
