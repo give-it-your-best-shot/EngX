@@ -2,8 +2,10 @@ package com.engx.engxserver.controller;
 
 import com.engx.engxserver.dto.AddChapterRequestDTO;
 import com.engx.engxserver.dto.ChapterDTO;
+import com.engx.engxserver.dto.ResponseWithUser;
 import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.exception.ResourceNotFoundException;
+import com.engx.engxserver.service.base.AuthenticationService;
 import com.engx.engxserver.service.base.ChapterService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,17 +24,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/chapters")
 public class ChapterController {
     private ChapterService chapterService;
+    private AuthenticationService authenticationService;
 
     @GetMapping
-    public ResponseEntity<List<ChapterDTO>> getAllChapter() {
+    public ResponseEntity<ResponseWithUser<List<ChapterDTO>>> getAllChapter() {
         List<ChapterDTO> result = chapterService.getAllChapters();
-        return ResponseEntity.ok(result);
+        ResponseWithUser<List<ChapterDTO>> responseWithUser =
+                new ResponseWithUser<>(authenticationService.getAuthenticatedUser(), result);
+        return ResponseEntity.ok(responseWithUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChapterDTO> getChapterWithId(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<ResponseWithUser<ChapterDTO>> getChapterWithId(@PathVariable Long id)
+            throws ResourceNotFoundException {
         ChapterDTO result = chapterService.getChapterById(id);
-        return ResponseEntity.ok(result);
+        ResponseWithUser<ChapterDTO> responseWithUser =
+                new ResponseWithUser<>(authenticationService.getAuthenticatedUser(), result);
+        return ResponseEntity.ok(responseWithUser);
     }
 
     @PostMapping

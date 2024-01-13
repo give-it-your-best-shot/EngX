@@ -1,9 +1,15 @@
 package com.engx.engxserver.controller;
 
+import com.engx.engxserver.dto.UserDTO;
+import com.engx.engxserver.security.CustomUserDetails;
 import com.engx.engxserver.service.base.UserService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,19 +23,11 @@ public class UserController {
 
     private MessageSource messageSource;
 
-    // @PostMapping("/login")
-    // public ResponseEntity<LoginResponseDTO> loginWithEmailAddress(@RequestBody
-    // LoginRequestDTO loginRequestDTO)
-    // throws LoginException {
-    // User user = userService.getUserByEmail(loginRequestDTO.getEmail());
-    // if (user == null) {
-    // throw new
-    // LoginException(messageSource.getMessage("api.error.user.not.authenticated",
-    // null, null));
-    // }
-    // UserDTO userDTOResponse = modelMapper.map(user, UserDTO.class);
-
-    // LoginResponseDTO loginDTO = new LoginResponseDTO(userDTOResponse);
-    // return new ResponseEntity<>(loginDTO, HttpStatus.OK);
-    // }
+    @PostMapping("/get-user")
+    public ResponseEntity<?> getUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = modelMapper.map(auth.getPrincipal(), CustomUserDetails.class);
+        UserDTO userDTO = modelMapper.map(customUserDetails.getUser(), UserDTO.class);
+        return ResponseEntity.ok(userDTO);
+    }
 }

@@ -3,6 +3,7 @@ package com.engx.engxserver.service.impl;
 import com.engx.engxserver.dto.AuthenticationRequest;
 import com.engx.engxserver.dto.AuthenticationResponse;
 import com.engx.engxserver.dto.RegisterRequest;
+import com.engx.engxserver.dto.UserDTO;
 import com.engx.engxserver.entity.Token;
 import com.engx.engxserver.entity.TokenType;
 import com.engx.engxserver.entity.User;
@@ -17,9 +18,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +37,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
+    private final ModelMapper modelMapper;
 
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
@@ -117,6 +122,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .build();
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
+        }
+    }
+
+    @Override
+    public UserDTO getAuthenticatedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getPrincipal() instanceof String) {
+            return null;
+        } else {
+            CustomUserDetails customUserDetails = modelMapper.map(auth.getPrincipal(), CustomUserDetails.class);
+            UserDTO userDTO = modelMapper.map(customUserDetails.getUser(), UserDTO.class);
+            return userDTO;
         }
     }
 }

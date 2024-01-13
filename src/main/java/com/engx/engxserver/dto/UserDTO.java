@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
     private Long id;
 
-    private String email;
-
     private String username;
 
     private String firstName;
@@ -20,4 +18,6 @@ public class UserDTO {
     private String lastName;
 
     private UserRole userRole;
+
+    private String photoURL;
 }

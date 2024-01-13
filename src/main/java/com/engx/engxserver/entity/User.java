@@ -39,4 +39,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
+
+    @Column()
+    private String photoURL;
 }
