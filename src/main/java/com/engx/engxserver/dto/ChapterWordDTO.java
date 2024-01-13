@@ -10,11 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChapterWordDTO {
-  private Long id;
+    private Long id;
 
-  private String word;
+    private String word;
 
-  private String meaning;
+    private String meaning;
 
-  private String example_sentence;
+    private String example_sentence;
 }

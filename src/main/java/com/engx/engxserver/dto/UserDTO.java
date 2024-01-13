@@ -1,7 +1,6 @@
 package com.engx.engxserver.dto;
 
 import com.engx.engxserver.entity.UserRole;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-  private Long id;
+    private Long id;
 
-  private String email;
+    private String email;
 
-  private String username;
+    private String username;
 
-  private String firstName;
+    private String firstName;
 
-  private String lastName;
+    private String lastName;
 
-  private UserRole userRole;
+    private UserRole userRole;
 }

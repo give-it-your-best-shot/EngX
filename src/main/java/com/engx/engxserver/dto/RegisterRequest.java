@@ -1,21 +1,19 @@
 package com.engx.engxserver.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddChapterRequestDTO {
-    private String name;
-
-    private String photoURL;
-
-    private String description;
-
-    private List<AddChapterWordRequestDTO> words;
+public class RegisterRequest {
+    private String firstname;
+    private String lastname;
+    private String username;
+    private String password;
 }

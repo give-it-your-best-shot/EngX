@@ -1,7 +1,8 @@
 package com.engx.engxserver.service.base;
 
-import com.engx.engxserver.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
-  User getUserByEmail(String email);
+public interface UserService extends UserDetailsService {
+    UserDetails loadUserById(Long id);
 }

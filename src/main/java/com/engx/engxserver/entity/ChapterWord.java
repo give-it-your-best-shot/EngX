@@ -1,7 +1,5 @@
 package com.engx.engxserver.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,21 +19,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "chapter_words")
 public class ChapterWord {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Column(nullable = false, unique = true, length = 45)
-  private String word;
+    @Column(nullable = false, unique = true, length = 45)
+    private String word;
 
-  @Column(nullable = false, unique = true, length = 45)
-  private String meaning;
+    @Column(nullable = false, unique = true, length = 45)
+    private String meaning;
 
-  @Column(nullable = false, unique = true)
-  private String example_sentence;
+    @Column(nullable = false, unique = true)
+    private String example_sentence;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "chapter_id", referencedColumnName = "id")
-  private Chapter chapter;
-
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+    private Chapter chapter;
 }

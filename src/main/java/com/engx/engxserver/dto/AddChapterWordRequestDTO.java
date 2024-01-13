@@ -10,9 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddChapterWordRequestDTO {
-  private String word;
+    private String word;
 
-  private String meaning;
+    private String meaning;
 
-  private String example_sentence;
+    private String example_sentence;
 }
