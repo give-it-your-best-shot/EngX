@@ -17,17 +17,10 @@ springdoc:
   paths-to-match: /**
   packages-to-scan: com.engx.engxserver
 
-jwt:
-  secretKey: secret
-  issuer: www.farukgenc.com
-  expirationMinute: 10
-
-swagger:
-  contact-name: Faruk Genc
-  contact-mail: omer@farukgenc.com
-  contact-url: https://farukgenc.com
-  app-name: Spring Boot Boilerplate Project
-  app-description: 'Spring Boot Boilerplate is a starter kit. This project includes : Spring Boot(3.2.1), Spring Data JPA, Spring Validation, Spring Security + JWT Token, MySQL, Mapstruct, Lombok, Swagger'
-  app-version: 2.0.0
-  app-license-url: https://www.apache.org/licenses/LICENSE-2.0.html
-  app-license: Apache 2.0
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET}
+      expiration: ${ACCESS_TOKEN_EXPIRE}
+      refresh-token:
+        expiration: ${REFRESH_TOKEN_EXPIRE}

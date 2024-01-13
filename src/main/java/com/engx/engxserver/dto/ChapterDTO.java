@@ -1,7 +1,6 @@
 package com.engx.engxserver.dto;
 
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +11,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChapterDTO {
-  private Long id;
+    private Long id;
 
-  private String name;
+    private String name;
 
-  private String photoURL;
+    private String photoURL;
 
-  private String description;
+    private String description;
 
-  private List<ChapterWordDTO> words;
+    private List<ChapterWordDTO> words;
 }
