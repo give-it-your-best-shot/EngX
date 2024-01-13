@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserById(Long userId) {
         Optional<User> user = userRepository.findById(userId);
-        if (user == null) {
+        if (!user.isPresent()) {
             throw new UsernameNotFoundException(Long.toString(userId));
         }
         return new CustomUserDetails(user.get());
