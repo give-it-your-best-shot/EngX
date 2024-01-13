@@ -3,6 +3,7 @@ package com.engx.engxserver.controller;
 import com.engx.engxserver.dto.AuthenticationRequest;
 import com.engx.engxserver.dto.AuthenticationResponse;
 import com.engx.engxserver.dto.RegisterRequest;
+import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.service.base.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +23,8 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request)
+            throws InsertFailException {
         return ResponseEntity.ok(service.register(request));
     }
 

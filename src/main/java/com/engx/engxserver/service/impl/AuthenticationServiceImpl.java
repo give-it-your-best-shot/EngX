@@ -8,6 +8,7 @@ import com.engx.engxserver.entity.Token;
 import com.engx.engxserver.entity.TokenType;
 import com.engx.engxserver.entity.User;
 import com.engx.engxserver.entity.UserRole;
+import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.repository.TokenRepository;
 import com.engx.engxserver.repository.UserRepository;
 import com.engx.engxserver.security.CustomUserDetails;
@@ -19,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,8 +40,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
     private final ModelMapper modelMapper;
+    private final MessageSource messageSource;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws InsertFailException {
         User user = User.builder()
                 .firstName(request.getFirstname())
                 .lastName(request.getLastname())
@@ -47,15 +50,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .userRole(UserRole.USER)
                 .build();
-        User savedUser = userRepository.save(user);
-        CustomUserDetails userDetails = new CustomUserDetails(user);
-        String jwtToken = jwtTokenProvider.generateToken(userDetails);
-        String refreshToken = jwtTokenProvider.generateRefreshToken(userDetails);
-        saveUserToken(savedUser, jwtToken);
-        return AuthenticationResponse.builder()
-                .accessToken(jwtToken)
-                .refreshToken(refreshToken)
-                .build();
+        try {
+            User savedUser = userRepository.save(user);
+            CustomUserDetails userDetails = new CustomUserDetails(user);
+            String jwtToken = jwtTokenProvider.generateToken(userDetails);
+            String refreshToken = jwtTokenProvider.generateRefreshToken(userDetails);
+            saveUserToken(savedUser, jwtToken);
+            return AuthenticationResponse.builder()
+                    .accessToken(jwtToken)
+                    .refreshToken(refreshToken)
+                    .build();
+        } catch (Exception exception) {
+            throw new InsertFailException(messageSource.getMessage("api.error.user.existed", null, null));
+        }
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
