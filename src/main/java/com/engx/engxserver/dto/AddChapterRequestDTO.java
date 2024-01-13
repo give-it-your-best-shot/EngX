@@ -15,7 +15,5 @@ public class AddChapterRequestDTO {
 
     private String photoURL;
 
-    private String description;
-
-    private List<AddChapterWordRequestDTO> words;
+    private List<String> words;
 }

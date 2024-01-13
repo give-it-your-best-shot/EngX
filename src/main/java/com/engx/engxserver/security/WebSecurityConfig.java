@@ -16,19 +16,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
-    private static final String[] WHITE_LIST_URL = {
-        "/auth/**",
-        "/api-docs",
-        "v3/api-docs/**",
-        "/swagger-resources",
-        "/swagger-resources/**",
-        "/configuration/ui",
-        "/configuration/security",
-        "/swagger-ui/**",
-        "/webjars/**",
-        "/swagger-ui.html",
-        "/api/*"
-    };
+    private static final String[] AUTH_LIST_URL = {};
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
@@ -37,10 +25,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers(WHITE_LIST_URL)
-                        .permitAll()
+                        .requestMatchers(AUTH_LIST_URL)
+                        .authenticated()
                         .anyRequest()
-                        .authenticated())
+                        .permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

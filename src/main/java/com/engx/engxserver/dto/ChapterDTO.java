@@ -17,7 +17,5 @@ public class ChapterDTO {
 
     private String photoURL;
 
-    private String description;
-
-    private List<ChapterWordDTO> words;
+    private List<String> words;
 }

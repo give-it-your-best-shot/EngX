@@ -1,13 +1,12 @@
 package com.engx.engxserver.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Arrays;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +29,13 @@ public class Chapter {
     private String photoURL;
 
     @Column()
-    private String description;
+    private String words;
 
-    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
-    private List<ChapterWord> words;
+    public List<String> getWords() {
+        return Arrays.asList(words.split("\\|"));
+    }
+
+    public void setWords(List<String> words) {
+        this.words = String.join("|", words);
+    }
 }
