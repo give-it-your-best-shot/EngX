@@ -24,3 +24,7 @@ application:
       expiration: ${ACCESS_TOKEN_EXPIRE}
       refresh-token:
         expiration: ${REFRESH_TOKEN_EXPIRE}
+
+  azure:
+    endpoint: ${AZURE_ENDPOINT}
+    api-key: ${AZURE_API_KEY}
