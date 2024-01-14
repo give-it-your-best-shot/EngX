@@ -143,4 +143,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return userDTO;
         }
     }
+
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response, String jwt) {
+        var storedToken = tokenRepository.findByToken(jwt).orElse(null);
+        if (storedToken != null) {
+            storedToken.setExpired(true);
+            storedToken.setRevoked(true);
+            tokenRepository.save(storedToken);
+            SecurityContextHolder.clearContext();
+        }
+    }
 }

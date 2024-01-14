@@ -17,4 +17,6 @@ public interface AuthenticationService {
     void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     UserDTO getAuthenticatedUser();
+
+    void logout(HttpServletRequest request, HttpServletResponse response, String jwt);
 }

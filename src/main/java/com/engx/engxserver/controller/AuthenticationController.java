@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/auth")
@@ -41,5 +42,18 @@ public class AuthenticationController {
     @GetMapping("/logout-success")
     public ResponseEntity<String> logout_success(HttpServletRequest request) {
         return ResponseEntity.ok(("Logout successfully"));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) {
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.ok("Logout successfully");
+        }
+        jwt = authHeader.substring(7);
+        service.logout(request, response, jwt);
+        return ResponseEntity.ok("Logout successfully");
     }
 }
