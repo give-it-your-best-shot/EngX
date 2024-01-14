@@ -1,14 +1,9 @@
 package com.engx.engxserver.controller;
 
 import com.engx.engxserver.dto.UserDTO;
-import com.engx.engxserver.security.CustomUserDetails;
-import com.engx.engxserver.service.base.UserService;
+import com.engx.engxserver.service.base.AuthenticationService;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,17 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
-    private ModelMapper modelMapper;
 
-    private UserService userService;
-
-    private MessageSource messageSource;
+    private AuthenticationService authenticationService;
 
     @PostMapping("/get-user")
-    public ResponseEntity<?> getUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetails customUserDetails = modelMapper.map(auth.getPrincipal(), CustomUserDetails.class);
-        UserDTO userDTO = modelMapper.map(customUserDetails.getUser(), UserDTO.class);
-        return ResponseEntity.ok(userDTO);
+    public ResponseEntity<UserDTO> getUser() {
+        UserDTO user = authenticationService.getAuthenticatedUser();
+        return ResponseEntity.ok(user);
     }
 }
