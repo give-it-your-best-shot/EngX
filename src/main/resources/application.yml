@@ -12,6 +12,23 @@ spring:
   messages:
     basename: messages/api_messages
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 121189305185277
+            clientSecret: 42ffe5aa7379e8326387e0fe16f34132
+            scope:
+              - email
+              - public_profile
+
 springdoc:
   show-actuator: true
   paths-to-match: /**
@@ -28,3 +45,15 @@ application:
   azure:
     endpoint: ${AZURE_ENDPOINT}
     api-key: ${AZURE_API_KEY}
+
+  client: ${CLIENT_URL}
+
+  oauth2:
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect

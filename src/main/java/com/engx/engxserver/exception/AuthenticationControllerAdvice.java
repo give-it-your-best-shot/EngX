@@ -28,4 +28,14 @@ public class AuthenticationControllerAdvice {
         ResponseFailure<ApiExceptionResponse> responseFailure = new ResponseFailure<>(response);
         return ResponseEntity.ok(responseFailure);
     }
+
+    @ExceptionHandler(UnAuthenticationException.class)
+    ResponseEntity<ResponseFailure<ApiExceptionResponse>> handleInsertFailException(
+            UnAuthenticationException exception) {
+
+        final ApiExceptionResponse response =
+                new ApiExceptionResponse(exception.getMessage(), HttpStatus.NOT_ACCEPTABLE, LocalDateTime.now());
+        ResponseFailure<ApiExceptionResponse> responseFailure = new ResponseFailure<>(response);
+        return ResponseEntity.ok(responseFailure);
+    }
 }

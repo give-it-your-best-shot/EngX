@@ -1,5 +1,7 @@
 package com.engx.engxserver.configuration;
 
+import com.engx.engxserver.repository.UserRepository;
+import com.engx.engxserver.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,14 +16,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-    private final UserDetailsService userDetailsService;
+    private final UserRepository userRepository;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(username -> userDetailsService.loadUserByUsername(username));
+        authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return email -> new CustomUserDetails(userRepository.findByEmail(email));
     }
 
     @Bean

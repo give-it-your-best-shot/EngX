@@ -10,6 +10,7 @@ import com.engx.engxserver.entity.User;
 import com.engx.engxserver.entity.UserRole;
 import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.exception.MissingArgumentException;
+import com.engx.engxserver.exception.UnAuthenticationException;
 import com.engx.engxserver.repository.TokenRepository;
 import com.engx.engxserver.repository.UserRepository;
 import com.engx.engxserver.security.CustomUserDetails;
@@ -46,7 +47,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = User.builder()
                 .firstName(request.getFirstname())
                 .lastName(request.getLastname())
-                .username(request.getUsername())
+                .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .userRole(UserRole.USER)
                 .build();
@@ -66,10 +67,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        User user = userRepository.findByUsername(request.getUsername());
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws UnAuthenticationException {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        } catch (Exception ex) {
+            throw new UnAuthenticationException(
+                    messageSource.getMessage("api.error.user.not.authenticated", null, null));
+        }
+        User user = userRepository.findByEmail(request.getEmail());
         if (user == null) {
             throw new UsernameNotFoundException(
                     messageSource.getMessage("api.error.user.not.authenticated", null, null));
@@ -111,16 +117,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throws MissingArgumentException, LoginException {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
-        final String username;
+        final String email;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new MissingArgumentException("Refresh token missing");
         }
         refreshToken = authHeader.substring(7);
-        username = jwtTokenProvider.extractUsername(refreshToken);
-        if (username == null) {
+        email = jwtTokenProvider.extractUsername(refreshToken);
+        if (email == null) {
             throw new LoginException(messageSource.getMessage("api.error.user.not.authenticated", null, null));
         }
-        User user = this.userRepository.findByUsername(username);
+        User user = this.userRepository.findByEmail(email);
         if (user == null) {
             throw new LoginException(messageSource.getMessage("api.error.user.not.authenticated", null, null));
         }

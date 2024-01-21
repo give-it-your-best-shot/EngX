@@ -6,6 +6,7 @@ import com.engx.engxserver.dto.RegisterRequest;
 import com.engx.engxserver.dto.ResponseSuccess;
 import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.exception.MissingArgumentException;
+import com.engx.engxserver.exception.UnAuthenticationException;
 import com.engx.engxserver.service.base.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<ResponseSuccess<AuthenticationResponse>> authenticate(
-            @RequestBody AuthenticationRequest request) {
+            @RequestBody AuthenticationRequest request) throws UnAuthenticationException {
         return ResponseEntity.ok(new ResponseSuccess<>(service.authenticate(request)));
     }
 
