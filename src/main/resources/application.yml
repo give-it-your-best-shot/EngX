@@ -10,7 +10,7 @@ spring:
       show-sql: true
 
   messages:
-    basename: messages/api_error_messages
+    basename: messages/api_messages
 
 springdoc:
   show-actuator: true

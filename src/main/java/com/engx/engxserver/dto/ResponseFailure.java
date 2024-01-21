@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseWithUser<T> {
-    private UserDTO user;
-    private T data;
+public class ResponseFailure<T> {
+    private T error;
 }

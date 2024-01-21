@@ -6,7 +6,7 @@ import com.engx.engxserver.entity.Chapter;
 import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.exception.ResourceNotFoundException;
 import com.engx.engxserver.repository.ChapterRepository;
-import com.engx.engxserver.service.base.ChapterService;
+import com.engx.engxserver.service.base.MaterialService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ChapterServiceImpl implements ChapterService {
+public class MaterialServiceImpl implements MaterialService {
     private final ChapterRepository chapterRepositor;
     private final ModelMapper modelMapper;
     private final MessageSource messageSource;
