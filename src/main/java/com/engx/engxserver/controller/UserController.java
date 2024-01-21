@@ -1,5 +1,6 @@
 package com.engx.engxserver.controller;
 
+import com.engx.engxserver.dto.ResponseSuccess;
 import com.engx.engxserver.dto.UserDTO;
 import com.engx.engxserver.service.base.AuthenticationService;
 import lombok.AllArgsConstructor;
@@ -16,8 +17,8 @@ public class UserController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/get-user")
-    public ResponseEntity<UserDTO> getUser() {
+    public ResponseEntity<ResponseSuccess<UserDTO>> getUser() {
         UserDTO user = authenticationService.getAuthenticatedUser();
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(new ResponseSuccess<>(user));
     }
 }
