@@ -15,7 +15,9 @@ import com.engx.engxserver.repository.UnitRecordRepository;
 import com.engx.engxserver.repository.UnitRepository;
 import com.engx.engxserver.repository.UserRepository;
 import com.engx.engxserver.service.base.RecordService;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
@@ -56,5 +58,19 @@ public class RecordServiceImpl implements RecordService {
         unitRecord.setNumQuestion(addUnitRecordRequestDTO.getNumQuestion());
         UnitRecord saveUnitRecord = unitRecordRepository.save(unitRecord);
         return modelMapper.map(saveUnitRecord, UnitRecordDTO.class);
+    }
+
+    @Override
+    public List<BookRecordDTO> getBookRecordsOfUser(Long userId) {
+        return bookRecordRepository.findAllByUser(userId).stream()
+                .map(bookRecord -> modelMapper.map(bookRecord, BookRecordDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UnitRecordDTO> getUnitRecordsOfUser(Long userId) {
+        return unitRecordRepository.findAllByUser(userId).stream()
+                .map(bookRecord -> modelMapper.map(bookRecord, UnitRecordDTO.class))
+                .collect(Collectors.toList());
     }
 }
