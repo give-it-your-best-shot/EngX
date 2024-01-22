@@ -1,7 +1,10 @@
 package com.engx.engxserver.controller;
 
+import com.engx.engxserver.dto.AddBookRecordRequestDTO;
+import com.engx.engxserver.dto.AddUnitRecordRequestDTO;
 import com.engx.engxserver.dto.BookRecordDTO;
 import com.engx.engxserver.dto.ResponseSuccess;
+import com.engx.engxserver.dto.UnitRecordDTO;
 import com.engx.engxserver.service.base.RecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +21,14 @@ public class RecordController {
     private final RecordService recordService;
 
     @PostMapping("/book")
-    public ResponseEntity<ResponseSuccess<BookRecordDTO>> getUser(@RequestBody BookRecordDTO bookRecordDTO) {
-        return ResponseEntity.ok(new ResponseSuccess<>(recordService.addOneBookRecord(bookRecordDTO)));
+    public ResponseEntity<ResponseSuccess<BookRecordDTO>> addBookRecord(
+            @RequestBody AddBookRecordRequestDTO addBookRecordRequestDTO) {
+        return ResponseEntity.ok(new ResponseSuccess<>(recordService.addOneBookRecord(addBookRecordRequestDTO)));
+    }
+
+    @PostMapping("/unit")
+    public ResponseEntity<ResponseSuccess<UnitRecordDTO>> addUnitRecord(
+            @RequestBody AddUnitRecordRequestDTO addUnitRecordRequestDTO) {
+        return ResponseEntity.ok(new ResponseSuccess<>(recordService.addOneUnitRecord(addUnitRecordRequestDTO)));
     }
 }

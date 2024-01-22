@@ -1,6 +1,5 @@
 package com.engx.engxserver.dto;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookRecordDTO {
-    private Long id;
+public class AddUnitRecordRequestDTO {
+
+    private Long userId;
+
+    private Long unitId;
 
     private Integer numQuestion;
 
     private Float score;
-
-    private LocalDateTime createdAt;
 }

@@ -36,7 +36,7 @@ public class BookRecord {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @Column(name = "num_quetsion")
+    @Column(name = "num_question")
     private Integer numQuestion;
 
     @Column()

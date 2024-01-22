@@ -1,5 +1,6 @@
 package com.engx.engxserver.dto;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,9 @@ import lombok.Setter;
 public class UnitRecordDTO {
     private Long id;
 
-    private String userId;
-
-    private String unitId;
-
     private Integer numQuestion;
 
     private Float score;
+
+    private LocalDateTime createdAt;
 }
