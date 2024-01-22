@@ -1,47 +1,51 @@
 package com.engx.engxserver.controller;
 
-import com.engx.engxserver.dto.AddChapterRequestDTO;
-import com.engx.engxserver.dto.ChapterDTO;
-import com.engx.engxserver.exception.InsertFailException;
-import com.engx.engxserver.service.base.AuthenticationService;
+import com.engx.engxserver.dto.BookDTO;
+import com.engx.engxserver.dto.ResponseSuccess;
+import com.engx.engxserver.dto.UnitDTO;
+import com.engx.engxserver.dto.WordDTO;
+import com.engx.engxserver.exception.ResourceNotFoundException;
 import com.engx.engxserver.service.base.MaterialService;
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/chapters")
+@RequestMapping("/materials")
 public class MaterialController {
-    private MaterialService chapterService;
-    private AuthenticationService authenticationService;
+    private MaterialService materialService;
 
-    @GetMapping
-    public ResponseEntity<List<ChapterDTO>> getAllChapter() {
-        List<ChapterDTO> result = chapterService.getAllChapters();
-        return ResponseEntity.ok(result);
+    @GetMapping("/books/{bookId}/units")
+    public ResponseEntity<ResponseSuccess<List<UnitDTO>>> getAllUnitsOfBook(@PathVariable Long bookId)
+            throws ResourceNotFoundException {
+        List<UnitDTO> result = materialService.getAllUnitsOfBook(bookId);
+        return ResponseEntity.ok(new ResponseSuccess<>(result));
     }
 
-    // @GetMapping("/{id}")
-    // public ResponseEntity<ResponseWithUser<ChapterDTO>> getChapterWithId(@PathVariable Long id)
-    //         throws ResourceNotFoundException {
-    //     ChapterDTO result = chapterService.getChapterById(id);
-    //     ResponseWithUser<ChapterDTO> responseWithUser =
-    //             new ResponseWithUser<>(authenticationService.getAuthenticatedUser(), result);
-    //     return ResponseEntity.ok(responseWithUser);
+    @GetMapping("/units/{unitId}/words")
+    public ResponseEntity<ResponseSuccess<List<WordDTO>>> getAllWordsOfUnit(@PathVariable Long unitId)
+            throws ResourceNotFoundException {
+        List<WordDTO> result = materialService.getAllWordsOfUnit(unitId);
+        return ResponseEntity.ok(new ResponseSuccess<>(result));
+    }
+
+    @GetMapping("/owner/{ownerId}/books")
+    public ResponseEntity<ResponseSuccess<List<BookDTO>>> getAllBooksOfOwner(@PathVariable Long ownerId)
+            throws ResourceNotFoundException {
+        List<BookDTO> result = materialService.getAllBooksOfOwner(ownerId);
+        return ResponseEntity.ok(new ResponseSuccess<>(result));
+    }
+
+    // @PostMapping
+    // public ResponseEntity<UnitDTO> addChapter(HttpServletRequest request,
+    // @RequestBody AddUnitRequestDTO chapter)
+    // throws InsertFailException {
+    // UnitDTO result = materialService.addChapter(chapter);
+    // return new ResponseEntity<>(result, HttpStatus.CREATED);
     // }
-
-    @PostMapping
-    public ResponseEntity<ChapterDTO> addChapter(HttpServletRequest request, @RequestBody AddChapterRequestDTO chapter)
-            throws InsertFailException {
-        ChapterDTO result = chapterService.addChapter(chapter);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
-    }
 }

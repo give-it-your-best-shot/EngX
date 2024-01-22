@@ -5,37 +5,36 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.util.Arrays;
-import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "chapters")
-public class Chapter {
+@Table(name = "unit_records")
+public class UnitRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 45)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
+
+    @Column(name = "num_quetsion")
+    private Integer numQuestion;
 
     @Column()
-    private String photoURL;
-
-    @Column()
-    private String words;
-
-    public List<String> getWords() {
-        return Arrays.asList(words.split("\\|"));
-    }
-
-    public void setWords(List<String> words) {
-        this.words = String.join("|", words);
-    }
+    private Float score;
 }

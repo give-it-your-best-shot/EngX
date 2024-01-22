@@ -1,6 +1,6 @@
 package com.engx.engxserver.dto;
 
-import java.util.List;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,14 +10,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChapterDTO {
+public class BookRecordDTO {
     private Long id;
 
-    private String name;
+    private String userId;
 
-    private String photoURL;
+    private String bookId;
 
-    private String description;
+    private Integer numQuestion;
 
-    private List<String> words;
+    private Float score;
+
+    private Date createdAt;
 }

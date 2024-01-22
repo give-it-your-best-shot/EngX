@@ -1,6 +1,5 @@
 package com.engx.engxserver.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddChapterRequestDTO {
-    private String name;
+public class UnitRecordDTO {
+    private Long id;
 
-    private String photoURL;
+    private String userId;
 
-    private List<String> words;
+    private String unitId;
+
+    private Integer numQuestion;
+
+    private Float score;
 }
