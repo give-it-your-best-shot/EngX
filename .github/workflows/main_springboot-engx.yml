@@ -10,8 +10,11 @@ env:
   ACCESS_TOKEN_EXPIRE: 86400000
   REFRESH_TOKEN_EXPIRE: 864000000
   CLIENT_URL: http://localhost:3000
+  AVATAR_RESOURCE_URL: "C:\engx\avatar"
   AZURE_ENDPOINT: https://sunhackathon3.openai.azure.com/
   AZURE_API_KEY: 6ebdecc7c3b841ec8d4be2fa61ce956a
+  GOOGLE_CLIENT_ID: 715345910762-d45r71gu26i7ncjg7uuqabd9otatdblc.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: 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
 on:
   push:
     branches:
@@ -50,7 +53,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: com.engx.engxserver
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
