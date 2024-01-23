@@ -1,5 +1,6 @@
 package com.engx.engxserver.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,4 +14,6 @@ public class UnitDTO {
     private Long id;
 
     private String name;
+
+    private List<WordDTO> words;
 }

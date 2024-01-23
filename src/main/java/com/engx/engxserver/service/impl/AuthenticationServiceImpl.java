@@ -2,6 +2,7 @@ package com.engx.engxserver.service.impl;
 
 import com.engx.engxserver.dto.AuthenticationRequest;
 import com.engx.engxserver.dto.AuthenticationResponse;
+import com.engx.engxserver.dto.IdTokenRequestDTO;
 import com.engx.engxserver.dto.RegisterRequest;
 import com.engx.engxserver.dto.UserDTO;
 import com.engx.engxserver.entity.Token;
@@ -16,11 +17,19 @@ import com.engx.engxserver.repository.UserRepository;
 import com.engx.engxserver.security.CustomUserDetails;
 import com.engx.engxserver.security.JwtTokenProvider;
 import com.engx.engxserver.service.base.AuthenticationService;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
 import javax.security.auth.login.LoginException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +51,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final TokenRepository tokenRepository;
     private final ModelMapper modelMapper;
     private final MessageSource messageSource;
+
+    @Value("${application.google-client-id}")
+    String clientId;
+
+    private GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
+                    new NetHttpTransport(), new JacksonFactory())
+            .setAudience(Collections.singletonList(clientId))
+            .build();
 
     public AuthenticationResponse register(RegisterRequest request) throws InsertFailException {
         User user = User.builder()
@@ -165,6 +182,45 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             storedToken.setRevoked(true);
             tokenRepository.save(storedToken);
             SecurityContextHolder.clearContext();
+        }
+    }
+
+    public AuthenticationResponse loginOAuthGoogle(IdTokenRequestDTO requestBody) {
+        User user = verifyIDToken(requestBody.getIdToken());
+        if (user == null) {
+            throw new IllegalArgumentException();
+        }
+        User savedUser = userRepository.save(user);
+        CustomUserDetails userDetails = new CustomUserDetails(user);
+        String jwtToken = jwtTokenProvider.generateToken(userDetails);
+        String refreshToken = jwtTokenProvider.generateRefreshToken(userDetails);
+        saveUserToken(savedUser, jwtToken);
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .user(modelMapper.map(user, UserDTO.class))
+                .build();
+    }
+
+    private User verifyIDToken(String idToken) {
+        try {
+            GoogleIdToken idTokenObj = verifier.verify(idToken);
+            if (idTokenObj == null) {
+                return null;
+            }
+            GoogleIdToken.Payload payload = idTokenObj.getPayload();
+            String firstName = (String) payload.get("given_name");
+            String lastName = (String) payload.get("family_name");
+            String email = payload.getEmail();
+            String pictureUrl = (String) payload.get("picture");
+            User user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setPhotoURL(pictureUrl);
+            return user;
+        } catch (GeneralSecurityException | IOException e) {
+            return null;
         }
     }
 }

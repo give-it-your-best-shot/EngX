@@ -1,12 +1,15 @@
 package com.engx.engxserver.service.base;
 
+import com.engx.engxserver.dto.AddBookRequestDTO;
+import com.engx.engxserver.dto.AddUnitRequestDTO;
+import com.engx.engxserver.dto.AddWordRequestDTO;
 import com.engx.engxserver.dto.BookDTO;
 import com.engx.engxserver.dto.UnitDTO;
 import com.engx.engxserver.dto.WordDTO;
+import com.engx.engxserver.exception.InsertFailException;
 import java.util.List;
 
 public interface MaterialService {
-    // UnitDTO addUnit(AddUnitRequestDTO chapter) throws InsertFailException;
 
     List<BookDTO> getAllBooksOfOwner(Long ownerId);
 
@@ -14,5 +17,9 @@ public interface MaterialService {
 
     List<WordDTO> getAllWordsOfUnit(Long unitId);
 
-    // UnitDTO getChapterById(Long id) throws ResourceNotFoundException;
+    UnitDTO addUnit(AddUnitRequestDTO addUnitRequestDTO) throws InsertFailException;
+
+    BookDTO addBook(AddBookRequestDTO addBookRequestDTO) throws InsertFailException;
+
+    WordDTO addWord(AddWordRequestDTO addWordRequestDTO) throws InsertFailException;
 }

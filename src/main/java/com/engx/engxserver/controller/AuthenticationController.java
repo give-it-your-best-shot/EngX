@@ -2,6 +2,7 @@ package com.engx.engxserver.controller;
 
 import com.engx.engxserver.dto.AuthenticationRequest;
 import com.engx.engxserver.dto.AuthenticationResponse;
+import com.engx.engxserver.dto.IdTokenRequestDTO;
 import com.engx.engxserver.dto.RegisterRequest;
 import com.engx.engxserver.dto.ResponseSuccess;
 import com.engx.engxserver.exception.InsertFailException;
@@ -43,6 +44,13 @@ public class AuthenticationController {
     public ResponseEntity<ResponseSuccess<AuthenticationResponse>> refreshToken(
             HttpServletRequest request, HttpServletResponse response) throws LoginException, MissingArgumentException {
         return ResponseEntity.ok(new ResponseSuccess<>(service.refreshToken(request, response)));
+    }
+
+    @PostMapping("/google")
+    public ResponseEntity<ResponseSuccess<AuthenticationResponse>> LoginWithGoogleOauth2(
+            @RequestBody IdTokenRequestDTO requestBody, HttpServletResponse response) {
+        AuthenticationResponse authenticationResponse = service.loginOAuthGoogle(requestBody);
+        return ResponseEntity.ok(new ResponseSuccess<>(authenticationResponse));
     }
 
     @PostMapping("/logout")
