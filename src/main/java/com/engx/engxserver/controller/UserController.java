@@ -1,16 +1,11 @@
 package com.engx.engxserver.controller;
 
-import com.engx.engxserver.dto.ResponseFailure;
 import com.engx.engxserver.dto.ResponseSuccess;
 import com.engx.engxserver.dto.UserDTO;
-import com.engx.engxserver.exception.InsertFailException;
 import com.engx.engxserver.service.base.AuthenticationService;
 import com.engx.engxserver.service.base.AvatarStorageService;
-
-import lombok.AllArgsConstructor;
-
 import java.io.IOException;
-
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,7 +33,8 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/avatar")
-    public ResponseEntity<ResponseSuccess<String>> uploadAvatar(@PathVariable long userId, @RequestParam("image") MultipartFile image) throws IOException {
+    public ResponseEntity<ResponseSuccess<String>> uploadAvatar(
+            @PathVariable long userId, @RequestParam("image") MultipartFile image) throws IOException {
         avatarStorageService.save(userId, image);
         return ResponseEntity.ok(new ResponseSuccess<>("OK"));
     }
