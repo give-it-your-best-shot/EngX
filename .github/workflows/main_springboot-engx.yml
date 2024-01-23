@@ -10,6 +10,7 @@ env:
   ACCESS_TOKEN_EXPIRE: 86400000
   REFRESH_TOKEN_EXPIRE: 864000000
   CLIENT_URL: http://localhost:3000
+  AVATAR_RESOURCE_URL: "C:\engx\avatar"
   AZURE_ENDPOINT: https://sunhackathon3.openai.azure.com/
   AZURE_API_KEY: 6ebdecc7c3b841ec8d4be2fa61ce956a
 on:
