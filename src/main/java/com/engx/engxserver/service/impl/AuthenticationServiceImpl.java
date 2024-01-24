@@ -205,6 +205,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 jsonObject.get("family_name") != null
                         ? jsonObject.get("family_name").toString()
                         : "");
+        if (user.getUserRole() == null) user.setUserRole(UserRole.USER);
         User savedUser = userRepository.save(user);
         CustomUserDetails userDetails = new CustomUserDetails(user);
         String jwtToken = jwtTokenProvider.generateToken(userDetails);

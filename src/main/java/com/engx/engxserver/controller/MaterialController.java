@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -79,8 +80,8 @@ public class MaterialController {
         return ResponseEntity.ok(new ResponseSuccess<>(materialService.addWord(addWordRequestDTO)));
     }
 
-    @PostMapping("/books/{name}")
-    public ResponseEntity<ResponseSuccess<List<BookDTO>>> findBookWithNameContain(@PathVariable String name)
+    @GetMapping("/books/search")
+    public ResponseEntity<ResponseSuccess<List<BookDTO>>> findBookWithNameContain(@RequestParam String name)
             throws InsertFailException {
         return ResponseEntity.ok(new ResponseSuccess<>(materialService.findBookWithNameContain(name)));
     }
