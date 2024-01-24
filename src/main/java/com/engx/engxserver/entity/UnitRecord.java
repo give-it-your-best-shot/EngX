@@ -42,6 +42,9 @@ public class UnitRecord {
     @Column()
     private Float score;
 
+    @Column()
+    private Boolean passed;
+
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;

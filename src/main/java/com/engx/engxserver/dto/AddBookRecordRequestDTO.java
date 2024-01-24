@@ -18,4 +18,6 @@ public class AddBookRecordRequestDTO {
     private Integer numQuestion;
 
     private Float score;
+
+    private Boolean passed;
 }

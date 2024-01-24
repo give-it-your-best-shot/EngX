@@ -13,9 +13,13 @@ import lombok.Setter;
 public class UnitRecordDTO {
     private Long id;
 
+    private Long unitId;
+
     private Integer numQuestion;
 
     private Float score;
+
+    private Boolean passed;
 
     private LocalDateTime createdAt;
 }

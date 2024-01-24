@@ -18,4 +18,6 @@ public class AddUnitRecordRequestDTO {
     private Integer numQuestion;
 
     private Float score;
+
+    private Boolean passed;
 }

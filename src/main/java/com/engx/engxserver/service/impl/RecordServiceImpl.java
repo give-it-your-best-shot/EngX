@@ -43,8 +43,11 @@ public class RecordServiceImpl implements RecordService {
         bookRecord.setUser(user.get());
         bookRecord.setScore(addBookRecordRequestDTO.getScore());
         bookRecord.setNumQuestion(addBookRecordRequestDTO.getNumQuestion());
+        bookRecord.setPassed(addBookRecordRequestDTO.getPassed());
         BookRecord saveBookRecord = bookRecordRepository.save(bookRecord);
-        return modelMapper.map(saveBookRecord, BookRecordDTO.class);
+        BookRecordDTO bookRecordDTO = modelMapper.map(saveBookRecord, BookRecordDTO.class);
+        bookRecordDTO.setBookId(book.get().getId());
+        return bookRecordDTO;
     }
 
     @Override
@@ -56,8 +59,11 @@ public class RecordServiceImpl implements RecordService {
         unitRecord.setUser(user.get());
         unitRecord.setScore(addUnitRecordRequestDTO.getScore());
         unitRecord.setNumQuestion(addUnitRecordRequestDTO.getNumQuestion());
+        unitRecord.setPassed(addUnitRecordRequestDTO.getPassed());
         UnitRecord saveUnitRecord = unitRecordRepository.save(unitRecord);
-        return modelMapper.map(saveUnitRecord, UnitRecordDTO.class);
+        UnitRecordDTO unitRecordDTO = modelMapper.map(saveUnitRecord, UnitRecordDTO.class);
+        unitRecordDTO.setUnitId(unit.get().getId());
+        return unitRecordDTO;
     }
 
     @Override
