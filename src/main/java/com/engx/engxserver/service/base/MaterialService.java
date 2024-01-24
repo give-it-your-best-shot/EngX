@@ -21,5 +21,9 @@ public interface MaterialService {
 
     BookDTO addBook(AddBookRequestDTO addBookRequestDTO) throws InsertFailException;
 
+    BookDTO getBookById(Long bookId);
+
+    UnitDTO getUnitById(Long unitId);
+
     WordDTO addWord(AddWordRequestDTO addWordRequestDTO) throws InsertFailException;
 }

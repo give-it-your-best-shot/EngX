@@ -86,4 +86,28 @@ public class MaterialServiceImpl implements MaterialService {
         Book savedBook = bookRepository.save(book);
         return modelMapper.map(savedBook, BookDTO.class);
     }
+
+    @Override
+    public BookDTO getBookById(Long bookId) {
+        Optional<Book> book = bookRepository.findById(bookId);
+        List<UnitDTO> unitDTOs = book.get().getUnits().stream()
+                .map(unit -> {
+                    UnitDTO unitDTO = new UnitDTO();
+                    unitDTO.setId(unit.getId());
+                    unitDTO.setName(unit.getName());
+                    return unitDTO;
+                })
+                .collect(Collectors.toList());
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(book.get().getId());
+        bookDTO.setName(book.get().getName());
+        bookDTO.setUnits(unitDTOs);
+        return bookDTO;
+    }
+
+    @Override
+    public UnitDTO getUnitById(Long unitId) {
+        Optional<Unit> unit = unitRepository.findById(unitId);
+        return modelMapper.map(unit.get(), UnitDTO.class);
+    }
 }

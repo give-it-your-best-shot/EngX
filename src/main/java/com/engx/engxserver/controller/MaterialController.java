@@ -33,10 +33,24 @@ public class MaterialController {
         return ResponseEntity.ok(new ResponseSuccess<>(result));
     }
 
+    @GetMapping("/books/{bookId}")
+    public ResponseEntity<ResponseSuccess<BookDTO>> getBookById(@PathVariable Long bookId)
+            throws ResourceNotFoundException {
+        BookDTO result = materialService.getBookById(bookId);
+        return ResponseEntity.ok(new ResponseSuccess<>(result));
+    }
+
     @GetMapping("/units/{unitId}/words")
     public ResponseEntity<ResponseSuccess<List<WordDTO>>> getAllWordsOfUnit(@PathVariable Long unitId)
             throws ResourceNotFoundException {
         List<WordDTO> result = materialService.getAllWordsOfUnit(unitId);
+        return ResponseEntity.ok(new ResponseSuccess<>(result));
+    }
+
+    @GetMapping("/units/{unitId}")
+    public ResponseEntity<ResponseSuccess<UnitDTO>> getInitById(@PathVariable Long unitId)
+            throws ResourceNotFoundException {
+        UnitDTO result = materialService.getUnitById(unitId);
         return ResponseEntity.ok(new ResponseSuccess<>(result));
     }
 
