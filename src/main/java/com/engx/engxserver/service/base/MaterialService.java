@@ -26,4 +26,6 @@ public interface MaterialService {
     UnitDTO getUnitById(Long unitId);
 
     WordDTO addWord(AddWordRequestDTO addWordRequestDTO) throws InsertFailException;
+
+    List<BookDTO> findBookWithNameContain(String name);
 }

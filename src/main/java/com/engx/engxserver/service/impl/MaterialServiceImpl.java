@@ -16,6 +16,7 @@ import com.engx.engxserver.repository.UnitRepository;
 import com.engx.engxserver.repository.UserRepository;
 import com.engx.engxserver.repository.WordRepository;
 import com.engx.engxserver.service.base.MaterialService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -109,5 +110,18 @@ public class MaterialServiceImpl implements MaterialService {
     public UnitDTO getUnitById(Long unitId) {
         Optional<Unit> unit = unitRepository.findById(unitId);
         return modelMapper.map(unit.get(), UnitDTO.class);
+    }
+
+    @Override
+    public List<BookDTO> findBookWithNameContain(String name) {
+        List<Book> books = bookRepository.findBookWithNameContain(name);
+        List<BookDTO> bookDTOs = new ArrayList<>();
+        for (Book book : books) {
+            BookDTO bookDTO = new BookDTO();
+            bookDTO.setId(book.getId());
+            bookDTO.setName(book.getName());
+            bookDTOs.add(bookDTO);
+        }
+        return bookDTOs;
     }
 }

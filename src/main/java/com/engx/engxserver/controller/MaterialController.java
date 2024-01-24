@@ -78,4 +78,10 @@ public class MaterialController {
             throws InsertFailException {
         return ResponseEntity.ok(new ResponseSuccess<>(materialService.addWord(addWordRequestDTO)));
     }
+
+    @PostMapping("/books/{name}")
+    public ResponseEntity<ResponseSuccess<List<BookDTO>>> findBookWithNameContain(@PathVariable String name)
+            throws InsertFailException {
+        return ResponseEntity.ok(new ResponseSuccess<>(materialService.findBookWithNameContain(name)));
+    }
 }
