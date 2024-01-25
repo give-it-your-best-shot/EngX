@@ -29,7 +29,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // doSeed();
+        doSeed();
     }
 
     void doSeed() throws Exception {
