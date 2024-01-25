@@ -11,5 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AddBookRequestDTO {
     private String name;
+    private String description;
+    private String photoUrl;
     private Long ownerId;
 }

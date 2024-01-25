@@ -42,6 +42,7 @@ public class User {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private UserRole userRole;
 
     @Column()

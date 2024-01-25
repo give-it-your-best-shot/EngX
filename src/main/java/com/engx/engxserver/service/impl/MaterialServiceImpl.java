@@ -102,6 +102,8 @@ public class MaterialServiceImpl implements MaterialService {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(book.get().getId());
         bookDTO.setName(book.get().getName());
+        bookDTO.setDescription(book.get().getDescription());
+        bookDTO.setPhotoUrl(book.get().getPhotoUrl());
         bookDTO.setUnits(unitDTOs);
         return bookDTO;
     }
@@ -120,6 +122,23 @@ public class MaterialServiceImpl implements MaterialService {
             BookDTO bookDTO = new BookDTO();
             bookDTO.setId(book.getId());
             bookDTO.setName(book.getName());
+            bookDTO.setDescription(book.getDescription());
+            bookDTO.setPhotoUrl(book.getPhotoUrl());
+            bookDTOs.add(bookDTO);
+        }
+        return bookDTOs;
+    }
+
+    @Override
+    public List<BookDTO> findAllAdminBooks() {
+        List<Book> books = bookRepository.findAllAdminBooks();
+        List<BookDTO> bookDTOs = new ArrayList<>();
+        for (Book book : books) {
+            BookDTO bookDTO = new BookDTO();
+            bookDTO.setId(book.getId());
+            bookDTO.setName(book.getName());
+            bookDTO.setDescription(book.getDescription());
+            bookDTO.setPhotoUrl(book.getPhotoUrl());
             bookDTOs.add(bookDTO);
         }
         return bookDTOs;

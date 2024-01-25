@@ -31,6 +31,12 @@ public class Book {
     @Column()
     private String name;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column()
+    private String photoUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     public User owner;

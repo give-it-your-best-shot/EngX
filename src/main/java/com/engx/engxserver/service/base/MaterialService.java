@@ -28,4 +28,6 @@ public interface MaterialService {
     WordDTO addWord(AddWordRequestDTO addWordRequestDTO) throws InsertFailException;
 
     List<BookDTO> findBookWithNameContain(String name);
+
+    List<BookDTO> findAllAdminBooks();
 }

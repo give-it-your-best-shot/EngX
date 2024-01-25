@@ -85,4 +85,9 @@ public class MaterialController {
             throws InsertFailException {
         return ResponseEntity.ok(new ResponseSuccess<>(materialService.findBookWithNameContain(name)));
     }
+
+    @GetMapping("/books/public")
+    public ResponseEntity<ResponseSuccess<List<BookDTO>>> findAllAdminBooks() throws InsertFailException {
+        return ResponseEntity.ok(new ResponseSuccess<>(materialService.findAllAdminBooks()));
+    }
 }
