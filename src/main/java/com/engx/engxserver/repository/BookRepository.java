@@ -19,6 +19,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "insert into books (id, name, owner_id) values (?1, ?2, ?3)", nativeQuery = true)
-    void insertCSV(Long id, String name, Long ownerId);
+    @Query(
+            value = "insert into books (id, name, owner_id, photo_url, description) values (?1, ?2, ?3, ?4, ?5)",
+            nativeQuery = true)
+    void insertCSV(Long id, String name, Long ownerId, String photoUrl, String description);
 }

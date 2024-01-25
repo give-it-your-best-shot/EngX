@@ -29,7 +29,9 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRepository.findById(Long.valueOf(1)).get() == null) doSeed();
+        if (!userRepository.findById(Long.valueOf(1)).isPresent()) {
+            doSeed();
+        }
     }
 
     void doSeed() throws Exception {
@@ -50,7 +52,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
         booksBuffer.readLine();
         while ((line = booksBuffer.readLine()) != null) {
             String[] data = line.split(splitBy); // use comma as separator
-            bookRepository.insertCSV(Long.valueOf(data[0]), data[1], Long.valueOf(data[2]));
+            bookRepository.insertCSV(Long.valueOf(data[0]), data[1], Long.valueOf(data[2]), data[3], data[4]);
         }
 
         BufferedReader unitsBuffer = new BufferedReader(new InputStreamReader(
