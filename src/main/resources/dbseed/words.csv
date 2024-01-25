@@ -1,71 +1,71 @@
 id,writing,unit_id,meaning
-1,opening,1,vị trí trống, sự mở cửa, lễ khai trương
-2,applicant,1,ứng viên, người xin việc
-3,meet,1,thoả mãn, đáp ứng yêu cầu
-4,qualified,1,đủ khả năng, trình độ, điều kiện
-5,candidate,1,thí sinh, ứng viên
-6,confidence,1,sự tin tưởng, lòng tin
-7,highly,1,rất, hết sức
-8,professional,1,có tính chuyên môn, chuyên nghiệp
-9,hire,1,thuê mướn, tuyển dụng
-10,reference,1,sự giới thiệu, sự tham khảo
-11,position,1,rất, hết sức
-12,achievement,1,thành tựu, thành tích
-13,impressed,1,có ấn tượng, cảm phục
-14,excellent,1,xuất sắc, vượt trội
-15,eligible,1,có đủ tư cách, thích hợp
-16,identify,1,nhận diện, nhận ra
-17,associate,1,liên kết, kết giao
+1,opening,1,"vị trí trống, sự mở cửa, lễ khai trương"
+2,applicant,1,"ứng viên, người xin việc"
+3,meet,1,"thoả mãn, đáp ứng yêu cầu"
+4,qualified,1,"đủ khả năng, trình độ, điều kiện"
+5,candidate,1,"thí sinh, ứng viên"
+6,confidence,1,"sự tin tưởng, lòng tin"
+7,highly,1,"rất, hết sức"
+8,professional,1,"có tính chuyên môn, chuyên nghiệp"
+9,hire,1,"thuê mướn, tuyển dụng"
+10,reference,1,"sự giới thiệu, sự tham khảo"
+11,position,1,"rất, hết sức"
+12,achievement,1,"thành tựu, thành tích"
+13,impressed,1,"có ấn tượng, cảm phục"
+14,excellent,1,"xuất sắc, vượt trội"
+15,eligible,1,"có đủ tư cách, thích hợp"
+16,identify,1,"nhận diện, nhận ra"
+17,associate,1,"liên kết, kết giao"
 18,employment,1,việc làm
-19,lack,1,thiếu, không có
+19,lack,1,"thiếu, không có"
 20,managerial,1,thuộc về quản lý
-21,familiar,1,quên thuộc, thuần thục
-22,prospective,1,có triển vọng, có tương lai
+21,familiar,1,"quên thuộc, thuần thục"
+22,prospective,1,"có triển vọng, có tương lai"
 23,appeal,1,kêu gọi, lôi cuốn, hấp dẫn
-24,specialize,1,chuyên làm về, chuyên học về
-25,apprehensive,1,lo lắng, e sợ
-26,consultant,1,người tư vấn, cố vấn
+24,specialize,1,""chuyên làm về, chuyên học về""
+25,apprehensive,1,""lo lắng, e sợ""
+26,consultant,1,""người tư vấn, cố vấn""
 27,entitle,1,cho quyền làm gì
-28,certification,1,sự chấn nhận, giấy chứng nhận
+28,certification,1,""sự chấn nhận, giấy chứng nhận""
 29,occupation,1,nghề nghiệp
-30,wage,1,tiền lương, tiền công
+30,wage,1,""tiền lương, tiền công""
 31,resume,1,sơ yếu lý lịch
-32,requirement,1,điều kiện cần thiết, yêu cầu
+32,requirement,1,"điều kiện cần thiết, yêu cầu"
 33,interview,1,cuộc phỏng vần
-34,training,1,sự đào tạo, huấn luyện
+34,training,1,"sự đào tạo, huấn luyện"
 35,condition,1,điều kiện
-36,attire,2,quần áo, cách ăn mặc
-37,concern,2,sự lo lắng, mối quan ngại
+36,attire,2,"quần áo, cách ăn mặc"
+37,concern,2,"sự lo lắng, mối quan ngại"
 38,exception,2,ngoại lệ
-39,comply,2,tuẩn thủ, tuân theo
-40,regulation,2,quy định, quy tắc, điều lệ
-41,policy,2,quy chế, chính sách
-42,severly,2,nghiêm khắc, khắc khe
-43,refrain,2,kiềm chế, hạn chế
-44,access,2,quyền truy cập, sự lui tới
-45,revise,2,sửa đổi, thay đổi
-46,approval,2,sự chấp thuận, sự phê duyệt
-47,accustomed,3,quần áo, cách ăn mặc
+39,comply,2,"tuẩn thủ, tuân theo"
+40,regulation,2,"quy định, quy tắc, điều lệ"
+41,policy,2,"quy chế, chính sách"
+42,severly,2,"nghiêm khắc, khắc khe"
+43,refrain,2,"kiềm chế, hạn chế"
+44,access,2,"quyền truy cập, sự lui tới"
+45,revise,2,"sửa đổi, thay đổi"
+46,approval,2,"sự chấp thuận, sự phê duyệt"
+47,accustomed,3,"quần áo, cách ăn mặc"
 48,demanding,3,đòi hỏi khăt khe
 49,colleague,3,đồng nghiệp
-50,division,3,bộ phận, sự phân chia
-51,request,3,lời yêu cầu, thỉnh cầu
+50,division,3,"bộ phận, sự phân chia"
+51,request,3,"lời yêu cầu, thỉnh cầu"
 52,efficiently,3,một cách hiệu quả
-53,submit,3,đệ trình, nộp
-54,directly,3,trực tiếp, thẳng, ngay
+53,submit,3,"đệ trình, nộp"
+54,directly,3,"trực tiếp, thẳng, ngay"
 55,remind,3,nhắc nhở
-56,instruct,3,hướng dẫn, chỉ thị, dạy
-57,sample,3,vật mẫu, mẫu thử
-58,IT,4,Information Technology, công nghệ thông tin
+56,instruct,3,"hướng dẫn, chỉ thị, dạy"
+57,sample,3,"vật mẫu, mẫu thử"
+58,IT,4,"Information Technology, công nghệ thông tin"
 59,app,4,ứng dụng
 60,application,4,ứng dụng
 61,program,4,chương trình
 62,programmer,4,lập trình viên
 63,programming language,4,ngôn ngữ lập trình
-64,Hello World!,4,Xin chào, thế giới! Chương trình máy tính mà đầu ra là dòng chữ 'Hello, world!' trên thiết bị hiển thị
-65,code,4,mã lệnh, viết mã lệnh
+64,Hello World!,4,"Xin chào, thế giới! Chương trình máy tính mà đầu ra là dòng chữ 'Hello, world!' trên thiết bị hiển thị"
+65,code,4,"mã lệnh, viết mã lệnh"
 66,compiler,4,chương trình biên dịch
-67,IDE,4,Integrated Development Environment, môi trường tích hợp để viết code
+67,IDE,4,"Integrated Development Environment, môi trường tích hợp để viết code"
 68,text editor,4,chương trình hiệu chỉnh văn bản
 69,main,5,hàm chính
 70,variable,5,biến
@@ -75,16 +75,16 @@ id,writing,unit_id,meaning
 74,for loop,5,vòng lặp for
 75,while loop,5,vòng lặp while
 76,array,5,mảng
-77,OOP,6,Object-oriented Programming, lập trình hướng đối tượng
+77,OOP,6,"Object-oriented Programming, lập trình hướng đối tượng"
 78,object,6,đối tượng
 79,property,6,thuộc tính của đối tượng
 80,action,6,hành động của đối tượng
-81,class,6,lớp, khuôn mẫu giúp mô hình hóa các đối tượng thực tế
+81,class,6,"lớp, khuôn mẫu giúp mô hình hóa các đối tượng thực tế"
 82,method,6,phương thức của lớp tương ứng với hành động
 83,access modifier,6,chỉ định phạm vi truy cập
 84,public,6,phạm vi toàn cục
 85,private,6,phạm vi nội bộ trong lớp
-86,protected,6,phạm vi được bảo vệ, bị hạn chế truy cập từ bên ngoài ngoại trừ các lớp con
+86,protected,6,"phạm vi được bảo vệ, bị hạn chế truy cập từ bên ngoài ngoại trừ các lớp con"
 87,internal/default,6,phạm vi nội bộ package
 88,encapsulation,6,tính đóng gói
 89,inheritance,6,tính kế thừa

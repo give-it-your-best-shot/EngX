@@ -13,6 +13,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "insert into words (id, writing, unit_id) values (?1, ?2, ?3)", nativeQuery = true)
-    void insertCSV(Long id, String writing, Long unitId);
+    @Query(value = "insert into words (id, writing, unit_id, meaning) values (?1, ?2, ?3, ?4)", nativeQuery = true)
+    void insertCSV(Long id, String writing, Long unitId, String meaning);
 }

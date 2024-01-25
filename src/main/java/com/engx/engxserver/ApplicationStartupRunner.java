@@ -29,16 +29,16 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        doSeed();
+        if (userRepository.findById(Long.valueOf(1)).get() == null) doSeed();
     }
 
     void doSeed() throws Exception {
-        logger.info("Database seeding !!");
+        logger.info("\nDatabase seeding !!");
         String line = "";
-        String splitBy = ",";
+        String splitBy = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
 
         BufferedReader usersBuffer = new BufferedReader(new InputStreamReader(
-                resourceLoader.getResource("classpath:dbseed/users.csv").getInputStream()));
+                resourceLoader.getResource("classpath:dbseed/users.csv").getInputStream(), "UTF-8"));
         usersBuffer.readLine();
         while ((line = usersBuffer.readLine()) != null) {
             String[] data = line.split(splitBy); // use comma as separator
@@ -46,7 +46,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
         }
 
         BufferedReader booksBuffer = new BufferedReader(new InputStreamReader(
-                resourceLoader.getResource("classpath:dbseed/books.csv").getInputStream()));
+                resourceLoader.getResource("classpath:dbseed/books.csv").getInputStream(), "UTF-8"));
         booksBuffer.readLine();
         while ((line = booksBuffer.readLine()) != null) {
             String[] data = line.split(splitBy); // use comma as separator
@@ -54,7 +54,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
         }
 
         BufferedReader unitsBuffer = new BufferedReader(new InputStreamReader(
-                resourceLoader.getResource("classpath:dbseed/units.csv").getInputStream()));
+                resourceLoader.getResource("classpath:dbseed/units.csv").getInputStream(), "UTF-8"));
         unitsBuffer.readLine();
         while ((line = unitsBuffer.readLine()) != null) {
             String[] data = line.split(splitBy); // use comma as separator
@@ -62,11 +62,11 @@ public class ApplicationStartupRunner implements CommandLineRunner {
         }
 
         BufferedReader wordsBuffer = new BufferedReader(new InputStreamReader(
-                resourceLoader.getResource("classpath:dbseed/words.csv").getInputStream()));
+                resourceLoader.getResource("classpath:dbseed/words.csv").getInputStream(), "UTF-8"));
         wordsBuffer.readLine();
         while ((line = wordsBuffer.readLine()) != null) {
             String[] data = line.split(splitBy); // use comma as separator
-            wordRepository.insertCSV(Long.valueOf(data[0]), data[1], Long.valueOf(data[2]));
+            wordRepository.insertCSV(Long.valueOf(data[0]), data[1], Long.valueOf(data[2]), data[3]);
         }
     }
 }
