@@ -1,0 +1,81 @@
+{
+    "book": "name",
+    "ownerId": 1,
+    "units": [
+        {
+            "unit": "Recruiment",
+            "bookId": "",
+            "words": [
+                {"writing": "opening", "meaning": "vị trí trống, sự mở cửa, lễ khai trương"},
+                {"writing": "applicant", "meaning": "ứng viên, người xin việc"},
+                {"writing": "meet", "meaning": "thoả mãn, đáp ứng yêu cầu"},
+                {"writing": "qualified", "meaning": "đủ khả năng, trình độ, điều kiện"},
+                {"writing": "candidate", "meaning": "thí sinh, ứng viên"},
+                {"writing": "confidence", "meaning": "sự tin tưởng, lòng tin"},
+                {"writing": "highly", "meaning": "rất, hết sức"},
+                {"writing": "professional", "meaning": "có tính chuyên môn, chuyên nghiệp"},
+                {"writing": "hire", "meaning": "thuê mướn, tuyển dụng"},
+                {"writing": "reference", "meaning": "sự giới thiệu, sự tham khảo"},
+                {"writing": "position", "meaning": "rất, hết sức"},
+                {"writing": "achievement", "meaning": "thành tựu, thành tích"},
+                {"writing": "impressed", "meaning": "có ấn tượng, cảm phục"},
+                {"writing": "excellent", "meaning": "xuất sắc, vượt trội"},
+                {"writing": "eligible", "meaning": "có đủ tư cách, thích hợp"},
+                {"writing": "identify", "meaning": "nhận diện, nhận ra"},
+                {"writing": "associate", "meaning": "liên kết, kết giao"},
+                {"writing": "employment", "meaning": "việc làm"},
+                {"writing": "lack", "meaning": "thiếu, không có"},
+                {"writing": "managerial", "meaning": "thuộc về quản lý"},
+                {"writing": "familiar", "meaning": "quên thuộc, thuần thục"},
+                {"writing": "prospective", "meaning": "có triển vọng, có tương lai"},
+                {"writing": "appeal", "meaning": "kêu gọi, lôi cuốn, hấp dẫn"},
+                {"writing": "specialize", "meaning": "chuyên làm về, chuyên học về"},
+                {"writing": "apprehensive", "meaning": "lo lắng, e sợ"},
+                {"writing": "consultant", "meaning": "người tư vấn, cố vấn"},
+                {"writing": "entitle", "meaning": "cho quyền làm gì"},
+                {"writing": "certification", "meaning": "sự chấn nhận, giấy chứng nhận"},
+                {"writing": "occupation", "meaning": "nghề nghiệp"},
+                {"writing": "wage", "meaning": "tiền lương, tiền công"},
+                {"writing": "resume", "meaning": "sơ yếu lý lịch"},
+                {"writing": "requirement", "meaning": "điều kiện cần thiết, yêu cầu"},
+                {"writing": "interview", "meaning": "cuộc phỏng vần"},
+                {"writing": "training", "meaning": "sự đào tạo, huấn luyện"},
+                {"writing": "condition", "meaning": "điều kiện"}
+            ]
+        } ,
+        {
+            "unit": "Regulations",
+            "bookId": "",
+            "words": [
+                {"writing": "attire", "meaning": "quần áo, cách ăn mặc"},
+                {"writing": "concern", "meaning": "sự lo lắng, mối quan ngại"},
+                {"writing": "exception", "meaning": "ngoại lệ"},
+                {"writing": "comply", "meaning": "tuẩn thủ, tuân theo"},
+                {"writing": "regulation", "meaning": "quy định, quy tắc, điều lệ"},
+                {"writing": "policy", "meaning": "quy chế, chính sách"},
+                {"writing": "severly", "meaning": "nghiêm khắc, khắc khe"},
+                {"writing": "refrain", "meaning": "kiềm chế, hạn chế"},
+                {"writing": "access", "meaning": "quyền truy cập, sự lui tới"},
+                {"writing": "revise", "meaning": "sửa đổi, thay đổi"},
+                {"writing": "approval", "meaning": "sự chấp thuận, sự phê duyệt"}
+            ]
+        },
+        {
+            "unit": "Office work",
+            "bookId": "",
+            "words": [
+                {"writing": "accustomed", "meaning": "quần áo, cách ăn mặc"},
+                {"writing": "demanding", "meaning": "đòi hỏi khăt khe"},
+                {"writing": "colleague", "meaning": "đồng nghiệp"},
+                {"writing": "division", "meaning": "bộ phận, sự phân chia"},
+                {"writing": "request", "meaning": "lời yêu cầu, thỉnh cầu"},
+                {"writing": "efficiently", "meaning": "một cách hiệu quả"},
+                {"writing": "submit", "meaning": "đệ trình, nộp"},
+                {"writing": "directly", "meaning": "trực tiếp, thẳng, ngay"},
+                {"writing": "remind", "meaning": "nhắc nhở"},
+                {"writing": "instruct", "meaning": "hướng dẫn, chỉ thị, dạy"},
+                {"writing": "sample", "meaning": "vật mẫu, mẫu thử"}
+            ]
+        } 
+    ]
+ }
